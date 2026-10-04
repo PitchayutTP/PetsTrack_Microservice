@@ -1,3 +1,34 @@
+# PetsTrack Microservice
+
+ระบบจัดการและติดตามตำแหน่งสัตว์เลี้ยงแบบ Microservices
+แยกหน้าที่ของแต่ละบริการ พร้อมระบบส่งเหตุการณ์และแจ้งเตือนผ่าน WebSocket
+
+## Services
+- API Gateway: จัดการเส้นทาง API และตรวจสอบ JWT
+- Authentication: จัดการการยืนยันตัวตน
+- Pet Management: จัดการข้อมูลสัตว์เลี้ยง
+- Tracking: รับและบันทึกพิกัดแยกตามสัตว์เลี้ยง
+- Notification: รับเหตุการณ์จาก RabbitMQ และส่งแจ้งเตือนผ่าน WebSocket
+
+## Highlights
+- ใช้ PostgreSQL แยกฐานข้อมูลตามบริการหลัก
+- ส่งเหตุการณ์อัปเดตตำแหน่งและการแจ้งเตือนผ่าน RabbitMQ
+- ใช้ OpenTelemetry และ Jaeger สำหรับ distributed tracing
+- มี circuit breaker ที่ API Gateway เพื่อรับมือบริการปลายทางขัดข้อง
+- จัดการบริการและเครื่องมือประกอบด้วย Docker Compose
+
+## Tech Stack
+- Frontend: React, Tailwind CSS, Leaflet
+- Backend: Go, Gin, JWT
+- Database: PostgreSQL
+- Messaging: RabbitMQ, WebSocket
+- Observability: OpenTelemetry, Jaeger
+- Infrastructure: Docker Compose, ngrok
+
+## Project Status
+เป็นระบบต้นแบบ โดยกฎแจ้งเตือนตำแหน่งยังใช้เงื่อนไขละติจูดแบบคงที่
+และต้องปรับการยืนยันตัวตนของ tracker และ WebSocket ก่อนใช้งานจริง
+
 ENV
 # Database
 DB_USER=postgres
